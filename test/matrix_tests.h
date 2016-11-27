@@ -28,6 +28,7 @@ class matrixTests : public CppUnit::TestFixture
   CPPUNIT_TEST(testSubMatrix2);
   CPPUNIT_TEST(testCut);
   CPPUNIT_TEST(testMulMatrix);
+  CPPUNIT_TEST(testMulMatrix2);
   CPPUNIT_TEST(testDet);
   CPPUNIT_TEST(testTranspose);
   CPPUNIT_TEST(testInverse);
@@ -54,6 +55,7 @@ public:
   void testEqual();
   void testMulFactor();
   void testMulMatrix();
+  void testMulMatrix2();
   void testAddMatrix();
   void testDiagonal();
   void testReset();

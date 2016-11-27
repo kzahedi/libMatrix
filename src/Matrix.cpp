@@ -284,6 +284,13 @@ const Matrix Matrix::operator-(const Matrix &m)
   return r;
 }
 
+const Matrix Matrix::operator*(const Matrix &m)
+{
+  Matrix r = *this;
+  r *= m;
+  return r;
+}
+
 const Matrix Matrix::operator*(const double factor)
 {
   Matrix r = *this;
@@ -603,7 +610,7 @@ Matrix operator*(double factor, const Matrix& m)
       R(r, c) = m(r,c) * factor;
     }
   }
-  return R;	
+  return R;
 }
 
 // from http://users.erols.com/mdinolfo/matrix.htm

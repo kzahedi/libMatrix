@@ -918,3 +918,41 @@ void matrixTests::testConvexCombine()
     }
   }
 }
+
+void matrixTests::testMulMatrix2()
+{
+  Matrix A(3,3);
+  Matrix B(3,3);
+
+  double v = 0;
+  for(int r = 0; r < A.rows(); r++)
+  {
+    for(int c = 0; c < A.cols(); c++)
+    {
+      A(r, c) = v++;
+      B(r, c) = v++;
+    }
+  }
+
+  Matrix AT = A;
+  Matrix BT = B;
+
+  AT.transpose();
+  BT.transpose();
+
+  Matrix C = A * B;
+
+  for(int r = 0; r < 3; r++)
+  {
+    for(int c = 0; c < 3; c++)
+    {
+      double v = 0.0;
+      for(int k = 0; k < 3; k++)
+      {
+        v += (A(r,k) * B(k,c));
+      }
+      CPPUNIT_ASSERT_DOUBLES_EQUAL(v, C(r,c), 0.0000001);
+    }
+  }
+
+}
