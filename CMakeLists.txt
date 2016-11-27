@@ -30,10 +30,32 @@ if(MATRIX_TESTS)
   add_subdirectory(test)
 endif(MATRIX_TESTS)
 
-set(SRC src/Matrix.cpp)
+set(SRC src/matrix/Matrix.cpp)
 
 if(APPLE)
   add_library(Matrix SHARED ${SRC})
 else(APPLE)
   add_library(Matrix STATIC ${SRC})
 endif(APPLE)
+
+CONFIGURE_FILE(
+  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+  IMMEDIATE @ONLY)
+
+ADD_CUSTOM_TARGET(uninstall
+  "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+
+INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/src/matrix
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include/
+  CONFIGURATIONS Release Debug
+  PATTERN "*.cpp" EXCLUDE
+  PATTERN "*.txt" EXCLUDE
+  )
+
+INSTALL(DIRECTORY ${PROJECT_BINARY_DIR}/lib
+  CONFIGURATIONS Release Debug
+  DESTINATION ${CMAKE_INSTALL_PREFIX}
+  FILES_MATCHING PATTERN "lib*" 
+  )
+

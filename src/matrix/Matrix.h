@@ -62,14 +62,14 @@ class Matrix
     Matrix&      operator*=(const double factor);
 
     Matrix&      operator= (const Matrix &m);
-    Matrix&      operator*=(const Matrix &m);
+    Matrix&      operator*=(const Matrix &m) throw(MatrixException);
 
     Matrix&      operator= (const double d);
     Matrix&      operator-=(const double d);
     Matrix&      operator/=(const double d);
 
     const Matrix operator-(const Matrix &m);
-    const Matrix operator+(const Matrix &m);
+    const Matrix operator+(const Matrix &m) const;
     const Matrix operator*(const Matrix &m);
 
     double L2();

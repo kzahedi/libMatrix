@@ -1,5 +1,5 @@
 #include "matrix_tests.h"
-#include <Matrix.h>
+#include <matrix/Matrix.h>
 
 #include <iostream>
 #include <vector>

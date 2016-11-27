@@ -1,7 +1,7 @@
 #ifndef __MATRIX_TEST_H__
 #define __MATRIX_TEST_H__
 
-#include <Matrix.h>
+#include <matrix/Matrix.h>
 #include <cppunit/extensions/HelperMacros.h>
 
 class matrixTests : public CppUnit::TestFixture

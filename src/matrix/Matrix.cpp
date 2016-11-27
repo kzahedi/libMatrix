@@ -270,7 +270,7 @@ Matrix& Matrix::operator*=(const double factor)
   return *this;
 }
 
-const Matrix Matrix::operator+(const Matrix &m)
+const Matrix Matrix::operator+(const Matrix &m) const
 {
   Matrix r = *this;
   r += m;
@@ -580,8 +580,13 @@ void Matrix::cut(int r_index, int c_index)
   *this = m;
 }
 
-Matrix& Matrix::operator*=(const Matrix &m)
+Matrix& Matrix::operator*=(const Matrix &m) throw(MatrixException)
 {
+  if(_rows != m._cols || _cols != m._rows)
+  {
+    throw MatrixException("Matrix Multiplication: rows and columns don't match.");
+  }
+
   Matrix C(_rows, _cols);
   for(int r = 0; r < _rows; r++)
   {
