@@ -570,9 +570,9 @@ void Matrix::cut(int r_index, int c_index)
 
 Matrix& Matrix::operator*=(const Matrix &m) throw(MatrixException)
 {
-  if(m._cols != _rows)
+  if(m._rows != _cols)
   {
-    cout << "this cols: " << _cols << " other rows: " << m._rows << endl;
+    // cout << "this cols: " << _cols << " other rows: " << m._rows << endl;
     throw MatrixException("Matrix Multiplication: rows and columns don't match.");
   }
 
