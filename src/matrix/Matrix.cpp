@@ -109,23 +109,11 @@ double Matrix::operator()(int row, int col) const throw(MatrixException)
   if(row >= _rows || col >= _cols || row < 0 || col < 0)
   {
     std::stringstream oss;
-    oss << "Invalid matrix index: ";
-    if(row > _rows)
-    {
-      oss << "row too large: " << row << " > " << _rows;
-    }
-    if(row < 0)
-    {
-      oss << "row is negative: " << row;
-    }
-    if(col > _cols)
-    {
-      oss << "col too large: " << col << " > " << _cols;
-    }
-    if(col < 0)
-    {
-      oss << "col is negative: " << col;
-    }
+    oss << "Invalid matrix index: (" << row << ", " << col << ")" ;
+    if(row > _rows) oss << "row too large: " << row << " > " << _rows;
+    if(row < 0)     oss << "row is negative: " << row;
+    if(col > _cols) oss << "col too large: " << col << " > " << _cols;
+    if(col < 0)     oss << "col is negative: " << col;
     throw MatrixException(oss.str());
   }
   return _cell[row][col];
@@ -582,18 +570,20 @@ void Matrix::cut(int r_index, int c_index)
 
 Matrix& Matrix::operator*=(const Matrix &m) throw(MatrixException)
 {
-  if(_rows != m._cols || _cols != m._rows)
+  if(m._cols != _rows)
   {
+    cout << "this cols: " << _cols << " other rows: " << m._rows << endl;
     throw MatrixException("Matrix Multiplication: rows and columns don't match.");
   }
 
-  Matrix C(_rows, _cols);
-  for(int r = 0; r < _rows; r++)
+  Matrix C(_rows, m._cols);
+
+  for(int r = 0; r < C.rows(); r++)
   {
-    for(int c = 0; c < _cols; c++)
+    for(int c = 0; c < C.cols(); c++)
     {
       double v = 0.0;
-      for(int k = 0; k < _rows; k++)
+      for(int k = 0; k < _cols; k++)
       {
         v += (get(r,k) * m(k,c));
       }

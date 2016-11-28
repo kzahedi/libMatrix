@@ -100,6 +100,7 @@ class Matrix
 
     friend std::ostream& operator<<(std::ostream& str, const Matrix& m)
     {
+      str << m._rows << "x" << m._cols << std::endl;
       for(int r = 0; r < m._rows; r++)
       {
         for(int c = 0; c < m._cols - 1; c++)

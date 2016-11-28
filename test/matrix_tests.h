@@ -33,6 +33,8 @@ class matrixTests : public CppUnit::TestFixture
   CPPUNIT_TEST(testTranspose);
   CPPUNIT_TEST(testInverse);
   CPPUNIT_TEST(testConvexCombine);
+  CPPUNIT_TEST(testMulMatrixNonSquare);
+  CPPUNIT_TEST(testMulMatrixNonSquare2);
 #ifdef TEST_VIDEO
   CPPUNIT_TEST(testVideoOutput);
 #endif // TEST_VIDEO
@@ -69,6 +71,8 @@ public:
   void testSubMatrix2();
   void testInverse();
   void testCut();
+  void testMulMatrixNonSquare();
+  void testMulMatrixNonSquare2();
 #ifdef TEST_VIDEO
   void testVideoOutput();
 #endif // TEST_VIDEO

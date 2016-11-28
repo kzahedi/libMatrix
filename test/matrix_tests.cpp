@@ -775,6 +775,82 @@ void matrixTests::testMulMatrix()
   }
 }
 
+void matrixTests::testMulMatrixNonSquare()
+{
+  Matrix A(3,2);
+  Matrix B(2,3);
+
+  double v = 0.0;
+  for(int r = 0; r < A.rows(); r++)
+  {
+    for(int c = 0; c < A.cols(); c++)
+    {
+      A(r, c) = v++;
+    }
+  }
+
+  v = 0.0;
+  for(int r = 0; r < B.rows(); r++)
+  {
+    for(int c = 0; c < B.cols(); c++)
+    {
+      B(r, c) = v++;
+    }
+  }
+
+  Matrix C = A * B;
+
+  CPPUNIT_ASSERT_EQUAL(3, C.cols());
+  CPPUNIT_ASSERT_EQUAL(3, C.rows());
+
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(3.0,  C(0,0), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(4.0,  C(0,1), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(5.0,  C(0,2), 0.0000001);
+
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(9.0,  C(1,0), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(14.0, C(1,1), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(19.0, C(1,2), 0.0000001);
+
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(15.0, C(2,0), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(24.0, C(2,1), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(33.0, C(2,2), 0.0000001);
+}
+
+void matrixTests::testMulMatrixNonSquare2()
+{
+  Matrix A(2,3);
+  Matrix B(3,2);
+
+  double v = 0.0;
+  for(int r = 0; r < A.rows(); r++)
+  {
+    for(int c = 0; c < A.cols(); c++)
+    {
+      A(r, c) = v++;
+    }
+  }
+
+  v = 0.0;
+  for(int r = 0; r < B.rows(); r++)
+  {
+    for(int c = 0; c < B.cols(); c++)
+    {
+      B(r, c) = v++;
+    }
+  }
+
+  Matrix C = A * B;
+
+  CPPUNIT_ASSERT_EQUAL(2, C.cols());
+  CPPUNIT_ASSERT_EQUAL(2, C.rows());
+
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(10.0, C(0,0), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(13.0, C(0,1), 0.0000001);
+
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(28.0, C(1,0), 0.0000001);
+  CPPUNIT_ASSERT_DOUBLES_EQUAL(40.0, C(1,1), 0.0000001);
+}
+
 void matrixTests::testCut()
 {
   Matrix m(4,4);
