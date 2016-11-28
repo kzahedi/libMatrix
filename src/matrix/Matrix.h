@@ -94,6 +94,8 @@ class Matrix
     void   cut(int r_index = -1, int c_index = -1);
     double get(const int row, const int col);
 
+    void   resize(int rows, int columns);
+
     friend Matrix operator*(double, const Matrix&);
 
     friend std::ostream& operator<<(std::ostream& str, const Matrix& m)

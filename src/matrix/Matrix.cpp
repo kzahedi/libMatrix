@@ -704,3 +704,9 @@ void Matrix::__add(const int row, const int col, const double value)
 {
   _cell[row][col] += value;
 }
+
+void Matrix::resize(int rows, int columns)
+{
+  __deleteCells();
+  __init(rows, columns, 0.0);
+}
