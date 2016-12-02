@@ -68,7 +68,7 @@ class Matrix
     Matrix&      operator-=(const double d);
     Matrix&      operator/=(const double d);
 
-    const Matrix operator-(const Matrix &m);
+    const Matrix operator-(const Matrix &m) const;
     const Matrix operator+(const Matrix &m) const;
     const Matrix operator*(const Matrix &m);
 
@@ -90,6 +90,7 @@ class Matrix
     double det() throw(MatrixException);
     void   invert();
     void   transpose();
+    Matrix T();
     void   adjunct();
     void   cut(int r_index = -1, int c_index = -1);
     double get(const int row, const int col);

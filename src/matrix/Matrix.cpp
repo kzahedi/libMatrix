@@ -265,7 +265,7 @@ const Matrix Matrix::operator+(const Matrix &m) const
   return r;
 }
 
-const Matrix Matrix::operator-(const Matrix &m)
+const Matrix Matrix::operator-(const Matrix &m) const
 {
   Matrix r = *this;
   r -= m;
@@ -572,7 +572,7 @@ Matrix& Matrix::operator*=(const Matrix &m) throw(MatrixException)
 {
   if(m._rows != _cols)
   {
-    // cout << "this cols: " << _cols << " other rows: " << m._rows << endl;
+    cout << "this cols: " << _cols << " other rows: " << m._rows << endl;
     throw MatrixException("Matrix Multiplication: rows and columns don't match.");
   }
 
@@ -699,4 +699,13 @@ void Matrix::resize(int rows, int columns)
 {
   __deleteCells();
   __init(rows, columns, 0.0);
+}
+
+Matrix Matrix::T()
+{
+  Matrix m(_cols, _rows);
+  for(int r = 0; r < _rows; r++)
+    for(int c = 0; c < _cols; c++)
+      m(c,r) = get(r,c);
+  return m;
 }
