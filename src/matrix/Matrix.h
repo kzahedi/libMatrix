@@ -91,6 +91,7 @@ class Matrix
     void   invert();
     void   transpose();
     Matrix T();
+    Matrix colMean();
     void   adjunct();
     void   cut(int r_index = -1, int c_index = -1);
     double get(const int row, const int col);

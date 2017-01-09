@@ -709,3 +709,14 @@ Matrix Matrix::T()
       m(c,r) = get(r,c);
   return m;
 }
+
+Matrix Matrix::colMean()
+{
+  Matrix m(1,_cols);
+  for(int c = 0; c < _cols; c++)
+    for(int r = 0; r < _rows; r++)
+      m(0,c) += get(r,c);
+
+  m /= (double)_rows;
+  return m;
+}
