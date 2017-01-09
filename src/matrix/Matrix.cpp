@@ -720,3 +720,14 @@ Matrix Matrix::colMean()
   m /= (double)_rows;
   return m;
 }
+
+Matrix Matrix::rowMean()
+{
+  Matrix m(_rows,1);
+  for(int r = 0; r < _rows; r++)
+    for(int c = 0; c < _cols; c++)
+      m(r,0) += get(r,c);
+
+  m /= (double)_cols;
+  return m;
+}

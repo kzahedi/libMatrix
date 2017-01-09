@@ -92,6 +92,7 @@ class Matrix
     void   transpose();
     Matrix T();
     Matrix colMean();
+    Matrix rowMean();
     void   adjunct();
     void   cut(int r_index = -1, int c_index = -1);
     double get(const int row, const int col);
