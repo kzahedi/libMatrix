@@ -29,7 +29,7 @@ class MatrixException : public std::exception
     std::string m_what;
 };
 
-class Matrix 
+class Matrix
 {
   public:
     /** Most simple constructor. Every cell is initialised with 0.*/
@@ -58,8 +58,11 @@ class Matrix
     Matrix&   operator-=(const Matrix &m)  throw(MatrixException);
 
     // TODO: Matrix A(10,10); Matrix A = B; does not work
-    const Matrix operator* (const double factor);
+    const Matrix operator*(const double factor);
     Matrix&      operator*=(const double factor);
+
+    bool         operator==(const Matrix&) const;
+    bool         operator!=(const Matrix& b) const;
 
     Matrix&      operator= (const Matrix &m);
     Matrix&      operator*=(const Matrix &m) throw(MatrixException);
@@ -81,8 +84,7 @@ class Matrix
 
     double rowSum(const int row);
     double colSum(const int col);
-
-    double l2();
+    double sum();
 
     void   reset(int rows, int cols, double value = (double)0.0);
     void   rescaleRows(double value, bool verbose);
@@ -104,6 +106,8 @@ class Matrix
     friend std::ostream& operator<<(std::ostream& str, const Matrix& m)
     {
       str << m._rows << "x" << m._cols << std::endl;
+      str.precision(10);
+      str.setf(std::ios::fixed,std::ios::floatfield);
       for(int r = 0; r < m._rows; r++)
       {
         for(int c = 0; c < m._cols - 1; c++)

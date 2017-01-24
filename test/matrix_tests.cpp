@@ -121,7 +121,7 @@ void matrixTests::testInvalidAccess()
   bool caught = false;
   Matrix m(10,10);
   CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m(1,2), 0.000001);
-  try 
+  try
   {
     m(11,12) = 1.2;
     CPPUNIT_FAIL("no exception thrown");
@@ -215,64 +215,6 @@ void matrixTests::testAddMatrix()
   }
 }
 
-#ifdef TEST_VIDEO
-void matrixTests::testVideoOutput()
-{
-  Matrix m(10,10);
-  Matrix mm(1,10);
-  Matrix mm3(5,10);
-  MatrixMovieMaker *mmm = new MatrixMovieMaker(&m,10,2,"name.mov");
-  MatrixMovieMaker *mmm2 = new MatrixMovieMaker(&mm,10,2,"name2.mov");
-  MatrixMovieMaker *mmm3 = new MatrixMovieMaker(&mm3,10,2,"name3.mov");
-
-  //  for(int i = 0; i < 10; i++)
-  //  {
-  //    double k = 0;
-  //    for(int r = 0; r < m.rows(); r++)
-  //    {
-  //      for(int c = 0; c < m.cols(); c++)
-  //      {
-  //        double v = ((double)(k))/((double)(m.rows()*m.cols()));
-  //        m(r,c) = v;
-  //        printf("%d %d = %f\n",r, c, v);
-  //        k++;
-  //      }
-  //    }
-  //    mmm->nextFrame();
-  //  }
-
-  for(int i = 0; i < 10; i++)
-  {
-    double k = 0;
-    for(int r = 0; r < mm3.rows(); r++)
-    {
-      for(int c = 0; c < mm3.cols(); c++)
-      {
-        double v = ((double)(k))/((double)(mm3.rows()*mm3.cols()));
-        mm3(r,c) = v;
-        k++;
-      }
-    }
-    mmm3->nextFrame();
-  }
-
-  //  for(int i = 0; i < 10; i++)
-  //  {
-  //    for(int r = 0; r < mm.rows(); r++)
-  //    {
-  //      for(int c = 0; c < mm.cols(); c++)
-  //      {
-  //        mm(r,c) = ((double)c/(double)mm.cols()) * (double)(1000.0-i)/1000.0;
-  //      }
-  //    }
-  //    mmm2->nextFrame();
-  //  }
-
-  delete mmm;
-  delete mmm2;
-  delete mmm3;
-}
-#endif // TEST_VIDEO
 
 void matrixTests::testEqual()
 {
@@ -560,7 +502,7 @@ void matrixTests::testDet()
   m2(1,0) = 3.0;
   m2(1,1) = 4.0;
 
-  double d = m2(0, 0) * m2(1, 1) - m2(0, 1) * m2(1, 0); 
+  double d = m2(0, 0) * m2(1, 1) - m2(0, 1) * m2(1, 0);
 
   CPPUNIT_ASSERT_DOUBLES_EQUAL(d, m2.det(), 0.0000001);
 
@@ -569,17 +511,17 @@ void matrixTests::testDet()
   m3(0,1) = 3.0;
   m3(0,2) = 1.0;
   m3(0,3) = 3.0;
-          
+
   m3(1,0) = 3.0;
   m3(1,1) = 0.1;
   m3(1,2) = 0.8;
   m3(1,3) = 9.0;
-           
+
   m3(2,0) = 1.1;
   m3(2,1) = 2.2;
   m3(2,2) = 3.1;
   m3(2,3) = 4.1;
-            
+
   m3(3,0) = 16.0;
   m3(3,1) = 17.0;
   m3(3,2) = 18.0;
@@ -709,7 +651,7 @@ void matrixTests::testInverse()
   // cout << mi << endl << endl;
   // cout << "N invert" << endl;
   // cout << ni << endl << endl;
-  
+
   for(int r = 0; r < n_product.rows(); r++)
   {
     for(int c = 0; c < n_product.cols(); c++)
@@ -878,7 +820,7 @@ void matrixTests::testCut()
       CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m(i,j), 0.0000001);
     }
   }
-  
+
   // test col only
 
   m.reset(4,4);
